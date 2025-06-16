@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Access to this page has been blocked by Knovon Zero Trust Firewall." />
+  <title>Access Blocked - Knovon Zero Trust</title>
+  <link rel="icon" href="https://mytab.knovon.net/knovontablogo.png">
+  <style>
+    :root {
+      --glass-bg: rgba(255, 255, 255, 0.2);
+      --glass-blur: blur(20px);
+      --border-color: rgba(255, 255, 255, 0.3);
+      --text-color: #000;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(135deg, #dbe4ff, #f1f3f5);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-color);
+    }
+
+    .logo {
+      width: 120px;
+      margin-bottom: 20px;
+    }
+
+    .glass-card {
+      background: var(--glass-bg);
+      -webkit-backdrop-filter: var(--glass-blur);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 480px;
+      text-align: center;
+    }
+
+    .glass-card h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .glass-card p {
+      font-size: 1rem;
+      margin: 0.75rem 0;
+      word-wrap: break-word;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #555;
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      .glass-card {
+        padding: 1.5rem 1rem;
+      }
+
+      .glass-card h1 {
+        font-size: 1.5rem;
+      }
+
+      .glass-card p {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <img src="https://mytab.knovon.net/knovontablogo.png" alt="Knovon Logo" class="logo">
+  <div class="glass-card">
+    <h1>🔒 Access Blocked</h1>
+    <p><strong>URL:</strong> <span id="blockedUrl">Loading...</span></p>
+    <p><strong>Reason:</strong> <span id="blockReason">Loading...</span></p>
+    <p><strong>Time:</strong> <span id="timestamp"></span></p>
+  </div>
+  <div class="footer">Powered by Knovon Zero Trust</div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const url = params.get('url') || 'Unknown';
+    const reason = params.get('reason') || 'Not specified';
+    const timestamp = new Date().toLocaleString();
+
+    document.getElementById('blockedUrl').textContent = decodeURIComponent(url);
+    document.getElementById('blockReason').textContent = decodeURIComponent(reason);
+    document.getElementById('timestamp').textContent = timestamp;
+  </script>
+</body>
+</html>
