@@ -145,18 +145,16 @@
   </header>
 
   <div class="container">
-    <div class="glass-card" onmousemove="this.style.transform='scale(1.01)'" onmouseleave="this.style.transform='scale(1)'>
+    <div class="glass-card">
       <h1>Access Denied</h1>
       <p>This request was blocked by your organization's security policy.</p>
+      <details style="margin-top: 1.5rem; text-align: left; background: rgba(255,255,255,0.1); border-radius: 16px; padding: 1rem;">
+        <summary style="cursor: pointer; font-weight: 500; font-size: 1rem;">View Technical Details</summary>
+        
+      </details>
       <div style="margin-top: 1.5rem;">
-        <details style="text-align: left; background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem;">
-          <summary style="cursor: pointer; font-weight: 500; font-size: 1rem;">View Technical Details</summary>
-          
-        </details>
-        <div style="margin-top: 1.5rem;">
-          <p>Need help? Contact <a href="mailto:helpdesk@knovon.org" style="color: var(--accent-color); font-weight: 500;">helpdesk@knovon.org</a></p>
-          
-        </div>
+        <p>Need help? Contact <a href="mailto:helpdesk@knovon.org" style="color: var(--accent-color); font-weight: 500; text-decoration: none;">helpdesk@knovon.org</a></p>
+      </div>
       </div>
       <p><strong>Destination:</strong> <span id="blockedUrl">Loading...</span></p>
       <p><strong>Policy ID:</strong> <span id="policyId">Loading...</span></p>
