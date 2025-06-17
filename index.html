@@ -158,18 +158,9 @@
     </div>
   </main>
 
-  <footer style="position: absolute; bottom: 0; width: 100%; padding: 1rem; font-size: 0.85rem; color: #ccc; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);">
-  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
-    <div style="display: flex; align-items: center; gap: 0.75rem;">
-      <img src="https://asset.knovon.net/Knovon_black.png" alt="Knovon Logo" style="height: 36px;">
-      <span>© 2025 Knovon · Enterprise Network Access Control</span>
-    </div>
-    <div style="display: flex; align-items: center; gap: 1rem; margin-top: 0.5rem;">
-      <span id="userEmailDisplay" style="color: #ccc; font-size: 0.85rem;"></span>
-      
-    </div>
-  </div>
-</footer>
+  <header style="width: 100%; text-align: center; padding: 1.5rem 0; position: absolute; top: 0; z-index: 10;">
+  <img src="https://asset.knovon.net/Knovon_black.png" alt="Knovon Logo" style="height: 60px; max-width: 90%;">
+</header>
 
   <script>
     const params = new URLSearchParams(window.location.search);
@@ -186,8 +177,7 @@
     document.getElementById('category').textContent = category;
     document.getElementById('sourceIp').textContent = sourceIp;
     document.getElementById('userEmail').textContent = userEmail;
-    document.getElementById('userBadgeEmail').textContent = userEmail;
-    document.getElementById('userMenuSummary').textContent = `${userEmail} ▾`;
+    
     document.getElementById('policyId').textContent = reason;
     document.getElementById('timestamp').textContent = timestamp;
     document.getElementById('category').textContent = category;
@@ -220,15 +210,11 @@ Here are the details:
     }
   
 
-     else {
-        root.style.setProperty('--bg-overlay', 'rgba(0, 0, 0, 0.4)');
-        root.style.setProperty('--text-color', '#fff');
-        document.body.style.color = '#fff';
-      }
+     
     }
   
     
-      document.getElementById('themeToggle').value = prefersDark ? 'dark' : 'light';
+      
     });
     document.getElementById('userEmailDisplay').textContent = `Logged in as: ${userEmail}`;
 </script>
