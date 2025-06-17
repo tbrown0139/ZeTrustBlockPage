@@ -143,7 +143,16 @@
 
   <header>
     <img src="https://asset.knovon.net/Knovon_black.png" alt="Knovon Logo">
-  <div id="userBadge" style="position: absolute; top: 20px; right: 30px; font-size: 0.9rem; color: var(--text-color); background: rgba(255,255,255,0.2); padding: 6px 12px; border-radius: 12px; backdrop-filter: blur(10px); font-weight: 500;">User: <span id="userBadgeEmail">Loading...</span></div>
+  <div id="userBadge" style="position: absolute; top: 20px; right: 30px; font-size: 0.9rem; color: var(--text-color); background: rgba(255,255,255,0.2); padding: 6px 12px; border-radius: 12px; backdrop-filter: blur(10px); font-weight: 500;">
+  User: <span id="userBadgeEmail">Loading...</span>
+  <details style="display: inline-block; margin-left: 10px;">
+    <summary style="cursor: pointer; font-size: 0.85rem; display: inline-block;">▼</summary>
+    <ul style="list-style: none; padding: 0; margin: 5px 0 0 0; background: rgba(255,255,255,0.9); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <li style="padding: 8px 12px;"><a href="#" style="text-decoration: none; color: #000;">Access Account</a></li>
+      <li style="padding: 8px 12px;"><a href="https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/download-warp/" target="_blank" style="text-decoration: none; color: #000;">Install WARP</a></li>
+    </ul>
+  </details>
+</div>
   </header>
 
   <div class="container">
@@ -152,7 +161,6 @@
       <p>This request was blocked by your organization's security policy.</p>
       <details style="margin-top: 1.5rem; text-align: left; background: rgba(255,255,255,0.1); border-radius: 16px; padding: 1rem;">
         <summary style="cursor: pointer; font-weight: 500; font-size: 1rem;">View Technical Details</summary>
-        
         
       </details>
       <div style="margin-top: 1.5rem;">
@@ -165,9 +173,9 @@
       <p><strong>Source IP:</strong> <span id="sourceIp">Loading...</span></p>
       <p><strong>User:</strong> <span id="userEmail">Loading...</span></p>
       <p><strong>Time:</strong> <span id="timestamp"></span></p>
+    <p style="margin-top: 2rem; font-size: 0.9rem; color: #444; text-align: center;">This device is currently connected to a Controlled Access Version of the Knovon Network. All activity is logged and monitored.</p>
     </div>
   </div>
-
   <footer>
     © 2025 Knovon · Enterprise Network Access Control
   </footer>
