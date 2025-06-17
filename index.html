@@ -14,6 +14,11 @@
       margin: 0;
       padding: 0;
     }
+    :root {
+      --bg-overlay: rgba(255, 255, 255, 0.08);
+      --text-color: var(--text-color);
+    }
+
     html, body {
       font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       height: 100vh;
@@ -82,7 +87,7 @@
       z-index: 1;
     }
     .card {
-      background: rgba(255, 255, 255, 0.08);
+      background: var(--bg-overlay);
       backdrop-filter: blur(24px);
       border-radius: 24px;
       padding: 2rem;
@@ -131,19 +136,7 @@
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://asset.knovon.net/Knovon_black.png" alt="Knovon Logo">
-    <div class="user-dropdown" style="display: flex; align-items: center; gap: 0.5rem;">
-      <img src="https://i.pinimg.com/474x/6d/12/54/6d1254aa9b0962b8ed070602563fcd67.jpg" alt="Avatar" style="border-radius: 50%; height: 32px; width: 32px;">
-      <details style="position: relative;">
-        <summary id="userMenuSummary" style="cursor: pointer; color: #fff; font-weight: 500;">Loading... ▾</summary>
-        <ul style="position: absolute; right: 0; background: rgba(255,255,255,0.95); color: #000; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.15); padding: 0.5rem 0; list-style: none; margin: 0; min-width: 160px;">
-          <li style="padding: 0.5rem 1rem;"><a href="#" style="text-decoration: none; color: inherit;">Access Account</a></li>
-          <li style="padding: 0.5rem 1rem;"><a href="https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/download-warp/" target="_blank" style="text-decoration: none; color: inherit;">Install WARP</a></li>
-        </ul>
-      </details>
-    </div>
-  </header>
+  
 
   <main style="padding-top: 80px;" aria-label="Access Control Panel">
     <div class="card">
@@ -166,7 +159,20 @@
   </main>
 
   <footer style="position: absolute; bottom: 0; width: 100%; text-align: center; padding: 1rem; font-size: 0.85rem; color: #ccc; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);">
-    © 2025 Knovon · Enterprise Network Access Control
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <img src="https://asset.knovon.net/Knovon_black.png" alt="Knovon Logo" style="height: 36px;">
+        <span>© 2025 Knovon · Enterprise Network Access Control</span>
+      </div>
+  <div style="margin-top: 0.5rem;">
+      <label style="color: #ccc; font-size: 0.85rem;">Theme:
+        <select id="themeToggle" onchange="toggleTheme(this.value)" style="margin-left: 0.5rem; padding: 0.25rem; border-radius: 6px;">
+          <option value="light">Light</option>
+          <option value="dark" selected>Dark</option>
+        </select></label>
+    </div>
+  </div>
+    </div>
   </footer>
 
   <script>
@@ -216,6 +222,27 @@ Here are the details:
 
       window.location.href = `mailto:${mailTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
+  
+
+    function toggleTheme(theme) {
+      const root = document.documentElement;
+      if (theme === 'light') {
+        root.style.setProperty('--bg-overlay', 'rgba(255, 255, 255, 0.6)');
+        root.style.setProperty('--text-color', '#000');
+        document.body.style.color = '#000';
+      } else {
+        root.style.setProperty('--bg-overlay', 'rgba(0, 0, 0, 0.4)');
+        root.style.setProperty('--text-color', '#fff');
+        document.body.style.color = '#fff';
+      }
+    }
+  
+    // Detect system theme on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      toggleTheme(prefersDark ? 'dark' : 'light');
+      document.getElementById('themeToggle').value = prefersDark ? 'dark' : 'light';
+    });
   </script>
 </body>
 </html>
