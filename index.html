@@ -148,15 +148,27 @@
     <div class="glass-card" onmousemove="this.style.transform='scale(1.01)'" onmouseleave="this.style.transform='scale(1)'>
       <h1>Access Denied</h1>
       <p>This request was blocked by your organization's security policy.</p>
+      <div style="margin-top: 1.5rem;">
+        <details style="text-align: left; background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem;">
+          <summary style="cursor: pointer; font-weight: 500; font-size: 1rem;">View Technical Details</summary>
+          <p><strong>Destination:</strong> <span id="blockedUrl">Loading...</span></p>
+          <p><strong>Policy ID:</strong> <span id="policyId">Loading...</span></p>
+          <p><strong>Category:</strong> <span id="category">Loading...</span></p>
+          <p><strong>Source IP:</strong> <span id="sourceIp">Loading...</span></p>
+          <p><strong>User:</strong> <span id="userEmail">Loading...</span></p>
+          <p><strong>Time:</strong> <span id="timestamp"></span></p>
+        </details>
+        <div style="margin-top: 1.5rem;">
+          <p>Need help? Contact <a href="mailto:helpdesk@knovon.org" style="color: var(--accent-color); font-weight: 500;">helpdesk@knovon.org</a></p>
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=mailto:helpdesk@knovon.org" alt="QR Code" style="margin-top: 0.5rem; border-radius: 8px;" />
+        </div>
+      </div>
       <p><strong>Destination:</strong> <span id="blockedUrl">Loading...</span></p>
       <p><strong>Policy ID:</strong> <span id="policyId">Loading...</span></p>
-      <p><strong>Request Category:</strong> <span id="category">Loading...</span></p>
+      <p><strong>Category:</strong> <span id="category">Loading...</span></p>
       <p><strong>Source IP:</strong> <span id="sourceIp">Loading...</span></p>
-      <p><strong>User Email:</strong> <span id="userEmail">Loading...</span></p>
-      <p><strong>Event Timestamp:</strong> <span id="timestamp"></span></p>
-      <p><strong>Destination:</strong> <span id="blockedUrl">Loading...</span></p>
-      <p><strong>Policy Reason:</strong> <span id="blockReason">Loading...</span></p>
-      <p><strong>Event Timestamp:</strong> <span id="timestamp"></span></p>
+      <p><strong>User:</strong> <span id="userEmail">Loading...</span></p>
+      <p><strong>Time:</strong> <span id="timestamp"></span></p>
     </div>
   </div>
 
@@ -172,9 +184,7 @@
     const category = params.getAll('cf_request_category_names').join(', ') || 'Uncategorized';
     const sourceIp = params.get('cf_source_ip') || 'Unavailable';
     const userEmail = params.get('cf_user_email') || 'Not provided';
-    const url = params.get('url') || 'Unknown';
-    const reason = params.get('reason') || 'Not specified';
-    const timestamp = new Date().toLocaleString();
+    
 
     document.getElementById('blockedUrl').textContent = url;
     document.getElementById('policyId').textContent = reason;
