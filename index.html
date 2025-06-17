@@ -145,9 +145,15 @@
   </header>
 
   <div class="container">
-    <div class="glass-card" onmousemove="this.style.transform='scale(1.01)'" onmouseleave="this.style.transform='scale(1)'">
+    <div class="glass-card" onmousemove="this.style.transform='scale(1.01)'" onmouseleave="this.style.transform='scale(1)'>
       <h1>Access Denied</h1>
       <p>This request was blocked by your organization's security policy.</p>
+      <p><strong>Destination:</strong> <span id="blockedUrl">Loading...</span></p>
+      <p><strong>Policy ID:</strong> <span id="policyId">Loading...</span></p>
+      <p><strong>Request Category:</strong> <span id="category">Loading...</span></p>
+      <p><strong>Source IP:</strong> <span id="sourceIp">Loading...</span></p>
+      <p><strong>User Email:</strong> <span id="userEmail">Loading...</span></p>
+      <p><strong>Event Timestamp:</strong> <span id="timestamp"></span></p>
       <p><strong>Destination:</strong> <span id="blockedUrl">Loading...</span></p>
       <p><strong>Policy Reason:</strong> <span id="blockReason">Loading...</span></p>
       <p><strong>Event Timestamp:</strong> <span id="timestamp"></span></p>
@@ -160,13 +166,22 @@
 
   <script>
     const params = new URLSearchParams(window.location.search);
+    const url = decodeURIComponent(params.get('cf_site_uri') || params.get('url') || 'Unknown');
+    const reason = params.get('cf_rule_id') || params.get('reason') || 'Not specified';
+    const timestamp = new Date().toLocaleString();
+    const category = params.getAll('cf_request_category_names').join(', ') || 'Uncategorized';
+    const sourceIp = params.get('cf_source_ip') || 'Unavailable';
+    const userEmail = params.get('cf_user_email') || 'Not provided';
     const url = params.get('url') || 'Unknown';
     const reason = params.get('reason') || 'Not specified';
     const timestamp = new Date().toLocaleString();
 
-    document.getElementById('blockedUrl').textContent = decodeURIComponent(url);
-    document.getElementById('blockReason').textContent = decodeURIComponent(reason);
+    document.getElementById('blockedUrl').textContent = url;
+    document.getElementById('policyId').textContent = reason;
     document.getElementById('timestamp').textContent = timestamp;
+    document.getElementById('category').textContent = category;
+    document.getElementById('sourceIp').textContent = sourceIp;
+    document.getElementById('userEmail').textContent = userEmail;
 
     const circle1 = document.getElementById('circle1');
     const circle2 = document.getElementById('circle2');
