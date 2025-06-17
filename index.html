@@ -19,10 +19,8 @@
     }
 
     html, body {
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      background: radial-gradient(circle at center, #e0e0e0, #f1f3f5);
+      background: url('https://asset.knovon.net/bg/knovon-glass-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
       min-height: 100vh;
       overflow: hidden;
       color: var(--text-color);
@@ -130,12 +128,13 @@
   <div class="container">
     <img src="https://asset.knovon.net/Knovon_black.png" alt="Knovon Logo" class="logo">
     <div class="glass-card">
-      <h1>🔒 Access Blocked</h1>
-      <p><strong>URL:</strong> <span id="blockedUrl">Loading...</span></p>
-      <p><strong>Reason:</strong> <span id="blockReason">Loading...</span></p>
-      <p><strong>Time:</strong> <span id="timestamp"></span></p>
+      <h1>Access Denied</h1>
+      <p>This request was blocked by your organization's security policy.</p>
+      <p><strong>Attempted URL:</strong> <span id="blockedUrl">Loading...</span></p>
+      <p><strong>Reason for Block:</strong> <span id="blockReason">Loading...</span></p>
+      <p><strong>Timestamp:</strong> <span id="timestamp"></span></p>
     </div>
-    <div class="footer">Powered by Knovon Zero Trust</div>
+    <div class="footer">© 2025 Knovon. All rights reserved · Zero Trust Network Enforcement</div>
   </div>
 
   <script>
