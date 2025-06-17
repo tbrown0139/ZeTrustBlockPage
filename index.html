@@ -142,6 +142,7 @@
 
   <header>
     <img src="https://asset.knovon.net/Knovon_black.png" alt="Knovon Logo">
+  <div id="userBadge" style="position: absolute; top: 20px; right: 30px; font-size: 0.9rem; color: var(--text-color); background: rgba(255,255,255,0.2); padding: 6px 12px; border-radius: 12px; backdrop-filter: blur(10px); font-weight: 500;">User: <span id="userBadgeEmail">Loading...</span></div>
   </header>
 
   <div class="container">
@@ -150,7 +151,6 @@
       <p>This request was blocked by your organization's security policy.</p>
       <details style="margin-top: 1.5rem; text-align: left; background: rgba(255,255,255,0.1); border-radius: 16px; padding: 1rem;">
         <summary style="cursor: pointer; font-weight: 500; font-size: 1rem;">View Technical Details</summary>
-        
         
       </details>
       <div style="margin-top: 1.5rem;">
@@ -186,6 +186,7 @@
     document.getElementById('category').textContent = category;
     document.getElementById('sourceIp').textContent = sourceIp;
     document.getElementById('userEmail').textContent = userEmail;
+    document.getElementById('userBadgeEmail').textContent = userEmail;
 
     const circle1 = document.getElementById('circle1');
     const circle2 = document.getElementById('circle2');
