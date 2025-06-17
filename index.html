@@ -8,10 +8,12 @@
   <link rel="icon" href="https://asset.knovon.net/Knovon_black.png">
   <style>
     :root {
-      --glass-bg: rgba(255, 255, 255, 0.2);
-      --glass-blur: blur(20px);
-      --border-color: rgba(255, 255, 255, 0.3);
+      --glass-bg: rgba(255, 255, 255, 0.25);
+      --glass-blur: blur(40px);
+      --border-color: rgba(255, 255, 255, 0.4);
       --text-color: #000;
+      --glass-border-radius: 32px;
+      --glass-box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
     }
 
     * {
@@ -19,7 +21,7 @@
     }
 
     html, body {
-      background: url('https://images.unsplash.com/photo-1464278533981-50106e6176b1?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
+      background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
       background-size: cover;
       min-height: 100vh;
       overflow: hidden;
@@ -79,11 +81,12 @@
       -webkit-backdrop-filter: var(--glass-blur);
       backdrop-filter: var(--glass-blur);
       border: 1px solid var(--border-color);
-      border-radius: 24px;
+      border-radius: var(--glass-border-radius);
       padding: 2rem;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--glass-box-shadow);
       width: 100%;
-      max-width: 480px;
+      max-width: 520px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .glass-card h1 {
@@ -127,7 +130,7 @@
 
   <div class="container">
     <img src="https://asset.knovon.net/Knovon_black.png" alt="Knovon Logo" class="logo">
-    <div class="glass-card">
+    <div class="glass-card" onmousemove="this.style.transform='scale(1.01)'" onmouseleave="this.style.transform='scale(1)'">
       <h1>Access Denied</h1>
       <p>This request was blocked by your organization's security policy.</p>
       <p><strong>Destination:</strong> <span id="blockedUrl">Loading...</span></p>
