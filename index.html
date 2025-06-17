@@ -158,22 +158,23 @@
     </div>
   </main>
 
-  <footer style="position: absolute; bottom: 0; width: 100%; text-align: center; padding: 1rem; font-size: 0.85rem; color: #ccc; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);">
-    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
-      <div style="display: flex; align-items: center; gap: 0.75rem;">
-        <img src="https://asset.knovon.net/Knovon_black.png" alt="Knovon Logo" style="height: 36px;">
-        <span>© 2025 Knovon · Enterprise Network Access Control</span>
-      </div>
-  <div style="margin-top: 0.5rem;">
+  <footer style="position: absolute; bottom: 0; width: 100%; padding: 1rem; font-size: 0.85rem; color: #ccc; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);">
+  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+    <div style="display: flex; align-items: center; gap: 0.75rem;">
+      <img src="https://asset.knovon.net/Knovon_black.png" alt="Knovon Logo" style="height: 36px;">
+      <span>© 2025 Knovon · Enterprise Network Access Control</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 1rem; margin-top: 0.5rem;">
+      <span id="userEmailDisplay" style="color: #ccc; font-size: 0.85rem;"></span>
       <label style="color: #ccc; font-size: 0.85rem;">Theme:
         <select id="themeToggle" onchange="toggleTheme(this.value)" style="margin-left: 0.5rem; padding: 0.25rem; border-radius: 6px;">
           <option value="light">Light</option>
           <option value="dark" selected>Dark</option>
-        </select></label>
+        </select>
+      </label>
     </div>
   </div>
-    </div>
-  </footer>
+</footer>
 
   <script>
     const params = new URLSearchParams(window.location.search);
@@ -243,6 +244,7 @@ Here are the details:
       toggleTheme(prefersDark ? 'dark' : 'light');
       document.getElementById('themeToggle').value = prefersDark ? 'dark' : 'light';
     });
-  </script>
+    document.getElementById('userEmailDisplay').textContent = `Logged in as: ${userEmail}`;
+</script>
 </body>
 </html>
