@@ -19,8 +19,8 @@
       height: 100vh;
       background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0') no-repeat center center fixed;
       background-size: cover;
+      color: #ffffff;
       overflow: hidden;
-      color: #1a1a1a;
     }
     header {
       position: absolute;
@@ -31,38 +31,47 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      z-index: 2;
     }
     header img {
       height: 40px;
     }
     .user-dropdown {
-      background: rgba(255, 255, 255, 0.25);
+      position: relative;
+      background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(20px);
       border-radius: 16px;
       padding: 0.5rem 1rem;
       font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      color: #fff;
     }
-    .user-dropdown details summary {
-      cursor: pointer;
+    .user-dropdown summary {
       list-style: none;
+      cursor: pointer;
     }
     .user-dropdown ul {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: #fff;
+      color: #000;
       margin-top: 0.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       list-style: none;
       padding: 0;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      min-width: 160px;
     }
     .user-dropdown ul li {
-      padding: 0.5rem 1rem;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #eee;
+    }
+    .user-dropdown ul li:last-child {
+      border-bottom: none;
     }
     .user-dropdown ul li a {
-      color: #000;
       text-decoration: none;
+      color: inherit;
     }
     main {
       height: 100vh;
@@ -70,16 +79,18 @@
       align-items: center;
       justify-content: center;
       padding: 1rem;
+      z-index: 1;
     }
     .card {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(30px);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(24px);
       border-radius: 24px;
       padding: 2rem;
-      max-width: 500px;
+      max-width: 540px;
       width: 100%;
       text-align: center;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+      color: #fff;
     }
     .card h1 {
       font-size: 2rem;
@@ -89,30 +100,46 @@
       margin-bottom: 1rem;
       font-size: 1rem;
     }
+    details summary {
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 1rem;
+      color: #ffffff;
+      font-size: 1rem;
+    }
     details[open] summary::after {
       transform: rotate(180deg);
     }
-    details summary {
-      font-weight: 500;
-      cursor: pointer;
-      margin-bottom: 1rem;
+    details {
+      text-align: left;
+      background: rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 1rem;
+      color: #fff;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15);
+    }
+    details p {
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.6;
     }
     .compliance {
       margin-top: 2rem;
       font-size: 0.85rem;
-      color: #333;
+      color: #ddd;
     }
   </style>
 </head>
 <body>
   <header>
     <img src="https://asset.knovon.net/Knovon_black.png" alt="Knovon Logo">
-    <div class="user-dropdown">
-      <details>
-        <summary>User: <span id="userBadgeEmail">Loading...</span></summary>
-        <ul>
-          <li><a href="#">Access Account</a></li>
-          <li><a href="https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/download-warp/" target="_blank">Install WARP</a></li>
+    <div class="user-dropdown" style="display: flex; align-items: center; gap: 0.5rem;">
+      <img src="https://ui-avatars.com/api/?name=User&background=ffffff&color=000000&size=32" alt="Avatar" style="border-radius: 50%; height: 32px; width: 32px;">
+      <details style="position: relative;">
+        <summary style="cursor: pointer; color: #fff; font-weight: 500;">tenny@knovon.org ▾</summary>
+        <ul style="position: absolute; right: 0; background: rgba(255,255,255,0.95); color: #000; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.15); padding: 0.5rem 0; list-style: none; margin: 0; min-width: 160px;">
+          <li style="padding: 0.5rem 1rem;"><a href="#" style="text-decoration: none; color: inherit;">Access Account</a></li>
+          <li style="padding: 0.5rem 1rem;"><a href="https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/download-warp/" target="_blank" style="text-decoration: none; color: inherit;">Install WARP</a></li>
         </ul>
       </details>
     </div>
@@ -131,7 +158,9 @@
         <p><strong>User:</strong> <span id="userEmail">Loading...</span></p>
         <p><strong>Time:</strong> <span id="timestamp"></span></p>
       </details>
-      <p class="compliance">This device is currently connected to a Controlled Access Version of the Knovon Network. All activity is logged and monitored.</p>
+      <p class="compliance" style="margin-top: 2rem; background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 12px; color: #fff; font-size: 0.9rem; line-height: 1.5;">
+        This device is currently connected to a <strong>Controlled Access Version</strong> of the Knovon Network. All activity is logged and monitored.
+      </p>
     </div>
   </main>
 
