@@ -15,9 +15,9 @@
       padding: 0;
     }
     :root {
-      --bg-overlay: rgba(255, 255, 255, 0.08);
-      --text-color: var(--text-color);
-    }
+  --bg-overlay: rgba(255, 255, 255, 0.08);
+  --text-color: #ffffff;
+}
 
     html, body {
       font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -166,12 +166,7 @@
     </div>
     <div style="display: flex; align-items: center; gap: 1rem; margin-top: 0.5rem;">
       <span id="userEmailDisplay" style="color: #ccc; font-size: 0.85rem;"></span>
-      <label style="color: #ccc; font-size: 0.85rem;">Theme:
-        <select id="themeToggle" onchange="toggleTheme(this.value)" style="margin-left: 0.5rem; padding: 0.25rem; border-radius: 6px;">
-          <option value="light">Light</option>
-          <option value="dark" selected>Dark</option>
-        </select>
-      </label>
+      
     </div>
   </div>
 </footer>
@@ -225,23 +220,14 @@ Here are the details:
     }
   
 
-    function toggleTheme(theme) {
-      const root = document.documentElement;
-      if (theme === 'light') {
-        root.style.setProperty('--bg-overlay', 'rgba(255, 255, 255, 0.6)');
-        root.style.setProperty('--text-color', '#000');
-        document.body.style.color = '#000';
-      } else {
+     else {
         root.style.setProperty('--bg-overlay', 'rgba(0, 0, 0, 0.4)');
         root.style.setProperty('--text-color', '#fff');
         document.body.style.color = '#fff';
       }
     }
   
-    // Detect system theme on load
-    window.addEventListener('DOMContentLoaded', () => {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      toggleTheme(prefersDark ? 'dark' : 'light');
+    
       document.getElementById('themeToggle').value = prefersDark ? 'dark' : 'light';
     });
     document.getElementById('userEmailDisplay').textContent = `Logged in as: ${userEmail}`;
