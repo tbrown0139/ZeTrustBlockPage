@@ -134,9 +134,9 @@
   <header>
     <img src="https://asset.knovon.net/Knovon_black.png" alt="Knovon Logo">
     <div class="user-dropdown" style="display: flex; align-items: center; gap: 0.5rem;">
-      <img src="https://ui-avatars.com/api/?name=User&background=ffffff&color=000000&size=32" alt="Avatar" style="border-radius: 50%; height: 32px; width: 32px;">
+      <img src="https://i.pinimg.com/474x/6d/12/54/6d1254aa9b0962b8ed070602563fcd67.jpg" alt="Avatar" style="border-radius: 50%; height: 32px; width: 32px;">
       <details style="position: relative;">
-        <summary style="cursor: pointer; color: #fff; font-weight: 500;">tenny@knovon.org ▾</summary>
+        <summary id="userMenuSummary" style="cursor: pointer; color: #fff; font-weight: 500;">Loading... ▾</summary>
         <ul style="position: absolute; right: 0; background: rgba(255,255,255,0.95); color: #000; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.15); padding: 0.5rem 0; list-style: none; margin: 0; min-width: 160px;">
           <li style="padding: 0.5rem 1rem;"><a href="#" style="text-decoration: none; color: inherit;">Access Account</a></li>
           <li style="padding: 0.5rem 1rem;"><a href="https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/download-warp/" target="_blank" style="text-decoration: none; color: inherit;">Install WARP</a></li>
@@ -145,24 +145,18 @@
     </div>
   </header>
 
-  <main>
-    <div class="card">
-      <h1>Access Denied</h1>
-      <p>This request was blocked by your organization's security policy.</p>
-      <details>
-        <summary>View Technical Details</summary>
-        <p><strong>Destination:</strong> <span id="blockedUrl">Loading...</span></p>
-        <p><strong>Policy ID:</strong> <span id="policyId">Loading...</span></p>
-        <p><strong>Category:</strong> <span id="category">Loading...</span></p>
-        <p><strong>Source IP:</strong> <span id="sourceIp">Loading...</span></p>
-        <p><strong>User:</strong> <span id="userEmail">Loading...</span></p>
-        <p><strong>Time:</strong> <span id="timestamp"></span></p>
-      </details>
+  <main style="padding-top: 80px;" aria-label="Access Control Panel">
+    $1
+      <button onclick="composeEmail()" style="margin-top: 1.5rem; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 500; color: #fff; background: rgba(255,255,255,0.2); border: none; border-radius: 8px; backdrop-filter: blur(10px); cursor: pointer; transition: background 0.3s;">Request Access</button>
       <p class="compliance" style="margin-top: 2rem; background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 12px; color: #fff; font-size: 0.9rem; line-height: 1.5;">
-        This device is currently connected to a <strong>Controlled Access Version</strong> of the Knovon Network. All activity is logged and monitored.
+        <strong>🔒 Notice:</strong> This device is currently connected to a <strong>Controlled Access Version</strong> of the Knovon Network. All activity is logged and monitored.
       </p>
     </div>
   </main>
+
+  <footer style="position: absolute; bottom: 0; width: 100%; text-align: center; padding: 1rem; font-size: 0.85rem; color: #ccc; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);">
+    © 2025 Knovon · Enterprise Network Access Control
+  </footer>
 
   <script>
     const params = new URLSearchParams(window.location.search);
@@ -180,6 +174,37 @@
     document.getElementById('sourceIp').textContent = sourceIp;
     document.getElementById('userEmail').textContent = userEmail;
     document.getElementById('userBadgeEmail').textContent = userEmail;
+    document.getElementById('userMenuSummary').textContent = `${userEmail} ▾`;.textContent = url;
+    document.getElementById('policyId').textContent = reason;
+    document.getElementById('timestamp').textContent = timestamp;
+    document.getElementById('category').textContent = category;
+    document.getElementById('sourceIp').textContent = sourceIp;
+    document.getElementById('userEmail').textContent = userEmail;
+    document.getElementById('userBadgeEmail').textContent = userEmail;
+  
+
+    function composeEmail() {
+      const mailTo = 'helpdesk@knovon.org';
+      const subject = `Blocked Domain: ${url}`;
+      const body = `I ran into a blocked domain and would like to request access.
+
+Here are the details:
+
+` +
+        `Destination: ${url}
+` +
+        `Policy ID: ${reason}
+` +
+        `Category: ${category}
+` +
+        `Source IP: ${sourceIp}
+` +
+        `User: ${userEmail}
+` +
+        `Time: ${timestamp}`;
+
+      window.location.href = `mailto:${mailTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
   </script>
 </body>
 </html>
