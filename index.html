@@ -163,60 +163,45 @@
 </header>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const url = decodeURIComponent(params.get('cf_site_uri') || params.get('url') || 'Unknown');
-    const reason = params.get('cf_rule_id') || params.get('reason') || 'Not specified';
-    const timestamp = new Date().toLocaleString();
-    const category = params.getAll('cf_request_category_names').join(', ') || 'Uncategorized';
-    const sourceIp = params.get('cf_source_ip') || 'Unavailable';
-    const userEmail = params.get('cf_user_email') || 'Not provided';
+  const params = new URLSearchParams(window.location.search);
+  const url = decodeURIComponent(params.get('cf_site_uri') || params.get('url') || 'Unknown');
+  const reason = params.get('cf_rule_id') || params.get('reason') || 'Not specified';
+  const timestamp = new Date().toLocaleString();
+  const category = params.getAll('cf_request_category_names').join(', ') || 'Uncategorized';
+  const sourceIp = params.get('cf_source_ip') || 'Unavailable';
+  const userEmail = params.get('cf_user_email') || 'Not provided';
 
-    document.getElementById('blockedUrl').textContent = url;
-    document.getElementById('policyId').textContent = reason;
-    document.getElementById('timestamp').textContent = timestamp;
-    document.getElementById('category').textContent = category;
-    document.getElementById('sourceIp').textContent = sourceIp;
-    document.getElementById('userEmail').textContent = userEmail;
-    
-    document.getElementById('policyId').textContent = reason;
-    document.getElementById('timestamp').textContent = timestamp;
-    document.getElementById('category').textContent = category;
-    document.getElementById('sourceIp').textContent = sourceIp;
-    document.getElementById('userEmail').textContent = userEmail;
-    document.getElementById('userBadgeEmail').textContent = userEmail;
-  
+  document.getElementById('blockedUrl').textContent = url;
+  document.getElementById('policyId').textContent = reason;
+  document.getElementById('timestamp').textContent = timestamp;
+  document.getElementById('category').textContent = category;
+  document.getElementById('sourceIp').textContent = sourceIp;
+  document.getElementById('userEmail').textContent = userEmail;
+  document.getElementById('userEmailDisplay').textContent = `Logged in as: ${userEmail}`;
 
-    function composeEmail() {
-      const mailTo = 'helpdesk@knovon.org';
-      const subject = `Blocked Domain: ${url}`;
-      const body = `I ran into a blocked domain and would like to request access.
-
-Here are the details:
+  function composeEmail() {
+    const mailTo = 'helpdesk@knovon.org';
+    const subject = `Blocked Domain: ${url}`;
+    const body = `I ran into a blocked domain and would like to request access.
 
 ` +
-        `Destination: ${url}
-` +
-        `Policy ID: ${reason}
-` +
-        `Category: ${category}
-` +
-        `Source IP: ${sourceIp}
-` +
-        `User: ${userEmail}
-` +
-        `Time: ${timestamp}`;
+      `Here are the details:
 
-      window.location.href = `mailto:${mailTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    }
-  
+` +
+      `Destination: ${url}
+` +
+      `Policy ID: ${reason}
+` +
+      `Category: ${category}
+` +
+      `Source IP: ${sourceIp}
+` +
+      `User: ${userEmail}
+` +
+      `Time: ${timestamp}`;
 
-     
-    }
-  
-    
-      
-    });
-    document.getElementById('userEmailDisplay').textContent = `Logged in as: ${userEmail}`;
+    window.location.href = `mailto:${mailTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
 </script>
 </body>
 </html>
