@@ -142,15 +142,17 @@
     <div class="card">
       <h1>Access Denied</h1>
       <p>This request was blocked by your organization's security policy.</p>
-      <details>
-        <summary>View Technical Details</summary>
-        <p><strong>Destination:</strong> <span id="blockedUrl">Loading...</span></p>
-        <p><strong>Policy ID:</strong> <span id="policyId">Loading...</span></p>
-        <p><strong>Category:</strong> <span id="category">Loading...</span></p>
-        <p><strong>Source IP:</strong> <span id="sourceIp">Loading...</span></p>
-        <p><strong>User:</strong> <span id="userEmail">Loading...</span></p>
-        <p><strong>Time:</strong> <span id="timestamp"></span></p>
-      </details>
+      <div id="detailsBlock">
+        <details>
+          <summary>View Technical Details</summary>
+          <p><strong>Destination:</strong> <span id="blockedUrl">Loading...</span></p>
+          <p><strong>Policy ID:</strong> <span id="policyId">Loading...</span></p>
+          <p><strong>Category:</strong> <span id="category">Loading...</span></p>
+          <p><strong>Source IP:</strong> <span id="sourceIp">Loading...</span></p>
+          <p><strong>User:</strong> <span id="userEmail">Loading...</span></p>
+          <p><strong>Time:</strong> <span id="timestamp"></span></p>
+        </details>
+      </div>
       <button onclick="composeEmail()" style="margin-top: 1.5rem; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 500; color: #fff; background: rgba(255,255,255,0.2); border: none; border-radius: 8px; backdrop-filter: blur(10px); cursor: pointer; transition: background 0.3s;">Request Access</button>
       <p class="compliance" style="margin-top: 2rem; background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 12px; color: #fff; font-size: 0.9rem; line-height: 1.5;">
         <strong>🔒 Notice:</strong> This device is currently connected to a <strong>Controlled Access Version</strong> of the Knovon Network. All activity is logged and monitored.
@@ -171,13 +173,18 @@
   const sourceIp = params.get('cf_source_ip') || 'Unavailable';
   const userEmail = params.get('cf_user_email') || 'Not provided';
 
-  document.getElementById('blockedUrl').textContent = url;
-  document.getElementById('policyId').textContent = reason;
-  document.getElementById('timestamp').textContent = timestamp;
-  document.getElementById('category').textContent = category;
-  document.getElementById('sourceIp').textContent = sourceIp;
-  document.getElementById('userEmail').textContent = userEmail;
-  document.getElementById('userEmailDisplay').textContent = `Logged in as: ${userEmail}`;
+  try {
+    document.getElementById('blockedUrl').textContent = url;
+    document.getElementById('policyId').textContent = reason;
+    document.getElementById('timestamp').textContent = timestamp;
+    document.getElementById('category').textContent = category;
+    document.getElementById('sourceIp').textContent = sourceIp;
+    document.getElementById('userEmail').textContent = userEmail;
+  } catch (e) {
+    const fallback = document.getElementById('detailsBlock');
+    fallback.innerHTML = '<p style="color:#faa">Unable to load technical details. Some information may be missing or malformed.</p>';
+  }
+  
 
   function composeEmail() {
     const mailTo = 'helpdesk@knovon.org';
